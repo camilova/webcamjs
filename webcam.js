@@ -51,7 +51,7 @@ var Webcam = {
 		dest_height: 0,        // these default to width/height
 		image_format: 'jpeg',  // image format (may be jpeg or png)
 		jpeg_quality: 90,      // jpeg image quality from 0 (worst) to 100 (best)
-		enable_flash: true,    // enable flash fallback,
+		enable_flash: false,    // enable flash fallback,
 		force_flash: false,    // force flash mode,
 		flip_horiz: false,     // flip image horiz (mirror mode)
 		fps: 30,               // camera frames per second
