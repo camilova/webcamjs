@@ -222,7 +222,7 @@ var Webcam = {
 		img.src = origObjURL;
 	},
 	
-	attach: function(elem) {
+	attach: function(elem, front = false) {
 		// create webcam preview and attach to DOM element
 		// pass in actual DOM reference, ID, or CSS selector
 		if (typeof(elem) == 'string') {
@@ -297,10 +297,9 @@ var Webcam = {
 			this.mediaDevices.getUserMedia({
 				"audio": false,
 				"video": this.params.constraints || {
-					mandatory: {
-						minWidth: this.params.dest_width,
-						minHeight: this.params.dest_height
-					}
+					minWidth: this.params.dest_width,
+					minHeight: this.params.dest_height,
+					facingMode: (front? "user" : "environment")
 				}
 			})
 			.then( function(stream) {
