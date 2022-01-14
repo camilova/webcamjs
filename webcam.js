@@ -63,7 +63,8 @@ var Webcam = {
 		unfreeze_snap: true,    // Whether to unfreeze the camera after snap (defaults to true)
 		iosPlaceholderText: 'Click here to open camera.',
 		user_callback: null,    // callback function for snapshot (used if no user_callback parameter given to snap function)
-		user_canvas: null       // user provided canvas for snapshot (used if no user_canvas parameter given to snap function)
+		user_canvas: null,      // user provided canvas for snapshot (used if no user_canvas parameter given to snap function)
+		prefer_front_camera: false, // set to true if you want to try to get first the front camera else will fallback to another
 	},
 
 	errors: {
@@ -222,7 +223,7 @@ var Webcam = {
 		img.src = origObjURL;
 	},
 	
-	attach: function(elem, front = false) {
+	attach: function(elem) {
 		// create webcam preview and attach to DOM element
 		// pass in actual DOM reference, ID, or CSS selector
 		if (typeof(elem) == 'string') {
@@ -299,7 +300,7 @@ var Webcam = {
 				"video": this.params.constraints || {
 					minWidth: this.params.dest_width,
 					minHeight: this.params.dest_height,
-					facingMode: (front? "user" : "environment")
+					facingMode: (this.params.prefer_front_camera? "user" : "environment"),
 				}
 			})
 			.then( function(stream) {
